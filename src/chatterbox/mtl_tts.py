@@ -207,10 +207,10 @@ class ChatterboxMultilingualTTS:
         self, wav_fpath: str | NDArray[np.float32], exaggeration: float = 0.5
     ):
         ## Load reference wav
-        s3gen_ref_wav, _sr = (
+        s3gen_ref_wav, *_ = (
             librosa.load(wav_fpath, sr=S3GEN_SR)
             if isinstance(wav_fpath, str)
-            else wav_fpath
+            else (wav_fpath, 24000)
         )
 
         ref_16k_wav = librosa.resample(s3gen_ref_wav, orig_sr=S3GEN_SR, target_sr=S3_SR)
