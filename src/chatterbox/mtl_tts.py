@@ -264,7 +264,7 @@ class ChatterboxMultilingualTTS:
                 f"Supported languages: {supported_langs}"
             )
 
-        if audio_prompt_path:
+        if audio_prompt_path is not None:
             self.prepare_conditionals(audio_prompt_path, exaggeration=exaggeration)
         else:
             assert self.conds is not None, (
